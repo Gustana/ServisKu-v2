@@ -31,8 +31,6 @@ public class LoginActivity extends AppCompatActivity implements LoginUtil {
     @Override
     public void login() {
         String username = binding.edtUsername.getText().toString();
-
-
         
         String password = binding.edtPassword.getText().toString();
 
