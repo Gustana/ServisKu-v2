@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ServiceKu</string>
+    <string name="app_jargon">"Kamu Senang Kami senang"</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="admin">admin</string>
+    <string name="title_activity_admin_home">AdminHomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="id_service">Id Service:</string>
+    <string name="no_plat">No Plat:</string>
+    <string name="tanggal_service">Tanggal Service:</string>
+    <string name="nama">Nama:</string>
+    <string name="keluhan">Keluhan:</string>
+    <string name="no_hp">No Hp:</string>
+    <string name="status">Status:</string>
+</resources>
