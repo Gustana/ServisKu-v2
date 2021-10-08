@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity implements LoginUtil {
         String password = binding.edtPassword.getText().toString();
 
         if (username.equals(getString(R.string.admin)) && password.equals(getString(R.string.admin))) {
+            spManager.setLogin("admin", "admin", SPManager.LEVEL_ADMIN);
+
             Intent i = new Intent(this, HomeAdminActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);

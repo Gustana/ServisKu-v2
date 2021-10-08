@@ -23,12 +23,12 @@ public class SPManager {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
     }
 
-    public void setLogin(String username, String password) {
+    public void setLogin(String username, String password, String level) {
         editor = sharedPreferences.edit();
 
         editor.putString(USERNAME_KEY, username);
         editor.putString(PASS_KEY, password);
-        editor.putString(LEVEL_KEY, "admin");
+        editor.putString(LEVEL_KEY, level);
         editor.putBoolean(LOGGED_IN_KEY, true);
 
         editor.commit();
@@ -42,5 +42,11 @@ public class SPManager {
 
     public boolean isLoggedIn(){
         return sharedPreferences.getBoolean(LOGGED_IN_KEY, false);
+    }
+
+    public void clearSP(){
+        editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
     }
 }
