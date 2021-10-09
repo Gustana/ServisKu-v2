@@ -1,4 +1,4 @@
-package com.example.serviceku.ui.admin;
+package com.example.serviceku.ui.user;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,32 +13,32 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.serviceku.MainActivity;
 import com.example.serviceku.R;
-import com.example.serviceku.databinding.ActivityHomeAdminBinding;
+import com.example.serviceku.databinding.ActivityHomeUserBinding;
 import com.example.serviceku.db.DBHolder;
 import com.example.serviceku.db.entity.ServiceEntity;
 import com.example.serviceku.helper.SPManager;
-import com.example.serviceku.ui.admin.adapter.RecyclerAdapterServiceAdmin;
+import com.example.serviceku.ui.user.adapter.RecyclerAdapterServiceUser;
 import com.example.serviceku.util.LogoutUtil;
 
 import java.util.List;
 
-public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
+public class HomeUserActivity extends AppCompatActivity implements LogoutUtil {
 
-    private static final String TAG = HomeAdminActivity.class.getSimpleName();
-    private ActivityHomeAdminBinding binding;
+    private final String TAG = HomeUserActivity.class.getSimpleName();
+    private ActivityHomeUserBinding binding;
     private DBHolder dbHolder;
     private SPManager spManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityHomeAdminBinding.inflate(getLayoutInflater());
+        binding = ActivityHomeUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         dbHolder = new DBHolder(this);
         spManager = new SPManager(this);
 
-        binding.rvAdminServiceList.setLayoutManager(
+        binding.rvUserServiceList.setLayoutManager(
                 new LinearLayoutManager(
                         this,
                         LinearLayoutManager.VERTICAL,
@@ -46,6 +46,17 @@ public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
                 )
         );
 
+        getServiceList();
+
+        binding.btnAdd.setOnClickListener(v -> {
+            Intent i = new Intent(this, InputServiceActivity.class);
+            startActivity(i);
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getServiceList();
     }
 
@@ -73,18 +84,22 @@ public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
     }
 
     private void getServiceList() {
+        int idUser = spManager.getIdUser();
         class GetService extends AsyncTask<Void, Void, List<ServiceEntity>> {
 
             @Override
             protected List<ServiceEntity> doInBackground(Void... voids) {
-                return dbHolder.getAppDB().serviceDao().getAdminServiceList();
+                return dbHolder.getAppDB().serviceDao().getUserServiceList(idUser);
             }
 
             @Override
             protected void onPostExecute(List<ServiceEntity> serviceEntities) {
                 super.onPostExecute(serviceEntities);
+
+                Log.i(TAG, "onPostExecute: idUser: " + idUser);
                 Log.i(TAG, "onPostExecute: " + serviceEntities.toString());
-                binding.rvAdminServiceList.setAdapter(new RecyclerAdapterServiceAdmin(serviceEntities));
+
+                binding.rvUserServiceList.setAdapter(new RecyclerAdapterServiceUser(serviceEntities));
             }
         }
 

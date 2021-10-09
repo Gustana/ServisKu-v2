@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class SPManager {
+    public static final String ID_KEY = "idUser";
     public static final String USERNAME_KEY = "username";
     public static final String PASS_KEY = "pass";
     public static final String LOGGED_IN_KEY = "loggedIn";
@@ -23,6 +24,7 @@ public class SPManager {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
     }
 
+    //for admin
     public void setLogin(String username, String password, String level) {
         editor = sharedPreferences.edit();
 
@@ -32,6 +34,23 @@ public class SPManager {
         editor.putBoolean(LOGGED_IN_KEY, true);
 
         editor.commit();
+    }
+
+    //for user
+    public void setLogin(int id, String username, String password, String level) {
+        editor = sharedPreferences.edit();
+
+        editor.putInt(ID_KEY, id);
+        editor.putString(USERNAME_KEY, username);
+        editor.putString(PASS_KEY, password);
+        editor.putString(LEVEL_KEY, level);
+        editor.putBoolean(LOGGED_IN_KEY, true);
+
+        editor.commit();
+    }
+
+    public int getIdUser(){
+        return sharedPreferences.getInt(ID_KEY, 0);
     }
 
     public boolean isLevelAdmin(){

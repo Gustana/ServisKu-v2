@@ -10,6 +10,7 @@ import com.example.serviceku.helper.SPManager;
 import com.example.serviceku.ui.admin.HomeAdminActivity;
 import com.example.serviceku.ui.auth.LoginActivity;
 import com.example.serviceku.ui.auth.RegisterActivity;
+import com.example.serviceku.ui.user.HomeUserActivity;
 import com.example.serviceku.util.LoginUtil;
 import com.example.serviceku.util.RegisterUtil;
 
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements LoginUtil, Regist
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
             }else{
-
+                Intent i = new Intent(this, HomeUserActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
             }
         }
     }

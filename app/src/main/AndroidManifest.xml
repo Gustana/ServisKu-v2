@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiceKu">
         <activity
+            android:name=".ui.admin.DetailServiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.user.InputServiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.user.HomeUserActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.admin.HomeAdminActivity"
             android:exported="true" />
         <activity

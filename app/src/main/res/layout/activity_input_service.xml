@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.user.InputServiceActivity">
+
+        <EditText
+            android:id="@+id/edtNoPlat"
+            android:hint="No plat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edtPhoneNo"
+            android:hint="No HP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edt_problem"
+            android:hint="Keluhan"
+            android:lines="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioGroup
+            android:id="@+id/rgVehicleType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbMotorcycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motor" />
+
+            <RadioButton
+                android:id="@+id/rbCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobil" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnSendService"
+            android:layout_width="match_parent"
+            android:text="Kirim"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+</layout>

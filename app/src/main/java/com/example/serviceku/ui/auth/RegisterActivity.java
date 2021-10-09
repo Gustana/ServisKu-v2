@@ -1,13 +1,12 @@
 package com.example.serviceku.ui.auth;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.serviceku.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.serviceku.databinding.ActivityRegisterBinding;
 import com.example.serviceku.db.DBHolder;
 import com.example.serviceku.db.entity.UserEntity;
@@ -26,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUtil 
 
         dbHolder = new DBHolder(this);
 
-        binding.btnLogin.setOnClickListener(v->register());
+        binding.btnLogin.setOnClickListener(v -> register());
     }
 
     @Override
@@ -34,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUtil 
         String username = binding.edtUsername.getText().toString();
         String password = binding.edtPassword.getText().toString();
 
-        class InsertUser extends AsyncTask<Void, Void, Void>{
+        class InsertUser extends AsyncTask<Void, Void, Void> {
 
             @Override
             protected Void doInBackground(Void... voids) {

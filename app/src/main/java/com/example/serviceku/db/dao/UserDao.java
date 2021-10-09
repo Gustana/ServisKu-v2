@@ -17,4 +17,10 @@ public interface UserDao {
     @Query("Select * FROM UserEntity")
     public List<UserEntity> userList();
 
+    @Query("SELECT * FROM userentity WHERE username = :username")
+    public UserEntity getUser(String username);
+
+    @Query("SELECT idUser FROM UserEntity WHERE username = :username")
+    public int getIdUser(String username);
+
 }

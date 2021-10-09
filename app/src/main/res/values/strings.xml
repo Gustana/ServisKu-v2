@@ -15,5 +15,6 @@
     <string name="keluhan">Keluhan:</string>
     <string name="no_hp">No Hp:</string>
     <string name="status">Status:</string>
-    <string name="register">Register</string>
+    <string name="total_harga">Total Harga:</string>
+    <string name="logout">logout</string>
 </resources>

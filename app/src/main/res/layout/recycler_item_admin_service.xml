@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="serviceAdminData"
+            type="com.example.serviceku.db.entity.ServiceEntity" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +38,7 @@
                     android:id="@+id/txtIdService"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -59,6 +66,7 @@
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+
                     tools:text="Lalala" />
 
             </LinearLayout>
@@ -80,6 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:text="@{serviceAdminData.noPlat}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="DK 1 U" />
@@ -104,6 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:text="@{serviceAdminData.date}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="27 Oktober 2021" />
@@ -128,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
+                    android:text="@{serviceAdminData.problems}"
                     android:textSize="16sp"
                     tools:text="mesin rusak" />
 
@@ -149,6 +160,7 @@
                     android:id="@+id/txtPhoneNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{serviceAdminData.phoneNo}"
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -174,8 +186,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
+
                     android:textSize="16sp"
                     tools:text="selesai" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_harga"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@{String.valueOf(serviceAdminData.totalPrice)}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="60.000" />
 
             </LinearLayout>
 
