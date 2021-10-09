@@ -38,7 +38,7 @@
                     android:id="@+id/txtIdService"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:text="@{String.valueOf(serviceAdminData.idService)}"
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -66,7 +66,6 @@
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-
                     tools:text="Lalala" />
 
             </LinearLayout>
@@ -186,7 +185,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
-
                     android:textSize="16sp"
                     tools:text="selesai" />
 

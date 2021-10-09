@@ -20,7 +20,7 @@ public class DetailServiceActivity extends AppCompatActivity {
     private ActivityDetailServiceBinding binding;
     private DBHolder dbHolder;
 
-    private int serviceId, userId;
+    private int serviceId;
 
     private String username;
     private ServiceEntity serviceData;
@@ -32,7 +32,7 @@ public class DetailServiceActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         serviceId = getIntent().getIntExtra("idService", 0);
-        userId = getIntent().getIntExtra("idUser", 0);
+        username = getIntent().getStringExtra("username");
 
         dbHolder = DBHolder.getInstance(this);
 
@@ -89,7 +89,6 @@ public class DetailServiceActivity extends AppCompatActivity {
             protected void onPostExecute(ServiceEntity serviceEntity) {
                 super.onPostExecute(serviceEntity);
 
-                username = dbHolder.getAppDB().userDao().getUsername(userId);
                 binding.txtName.setText(username);
                 serviceData = serviceEntity;
 

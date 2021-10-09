@@ -90,7 +90,8 @@ public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
             protected void onPostExecute(List<ServiceEntity> serviceEntities) {
                 super.onPostExecute(serviceEntities);
                 Log.i(TAG, "onPostExecute: " + serviceEntities.toString());
-                binding.rvAdminServiceList.setAdapter(new RecyclerAdapterServiceAdmin(serviceEntities));
+
+                binding.rvAdminServiceList.setAdapter(new RecyclerAdapterServiceAdmin(serviceEntities, dbHolder));
             }
         }
 
