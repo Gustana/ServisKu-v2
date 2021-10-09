@@ -46,6 +46,7 @@ public class RecyclerAdapterServiceAdmin extends RecyclerView.Adapter<RecyclerAd
         holder.itemView.setOnClickListener(v->{
             Intent i = new Intent(holder.binding.getRoot().getContext(), DetailServiceActivity.class);
             i.putExtra("idService", serviceEntity.getIdService());
+            i.putExtra("idUser", serviceEntity.getIdUser());
             holder.binding.getRoot().getContext().startActivity(i);
         });
     }

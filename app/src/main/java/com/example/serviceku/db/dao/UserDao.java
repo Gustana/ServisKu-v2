@@ -23,4 +23,7 @@ public interface UserDao {
     @Query("SELECT idUser FROM UserEntity WHERE username = :username")
     public int getIdUser(String username);
 
+    @Query("SELECT username FROM UserEntity WHERE idUser = :idUser")
+    public String getUsername(int idUser);
+
 }

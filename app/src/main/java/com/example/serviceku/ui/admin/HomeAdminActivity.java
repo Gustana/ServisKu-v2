@@ -50,6 +50,12 @@ public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        getServiceList();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_admin, menu);
         return true;

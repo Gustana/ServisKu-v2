@@ -17,4 +17,7 @@
     <string name="status">Status:</string>
     <string name="total_harga">Total Harga:</string>
     <string name="logout">logout</string>
+    <string name="update">Update</string>
+    <string name="selesai">Selesai</string>
+    <string name="sedang_diservis">Sedang diservis</string>
 </resources>

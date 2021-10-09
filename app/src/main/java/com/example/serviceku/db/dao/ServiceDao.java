@@ -25,6 +25,11 @@ public interface ServiceDao {
     public List<ServiceEntity> getAdminServiceList();
 
 
+    @Query("SELECT * FROM ServiceEntity " +
+            "INNER JOIN UserEntity ON ServiceEntity.idUser = UserEntity.idUser " +
+            "WHERE ServiceEntity.idService = :idService")
+    public ServiceEntity getServiceDetail(int idService);
+
 
     //this method only to update status & totalPrice
     @Update
