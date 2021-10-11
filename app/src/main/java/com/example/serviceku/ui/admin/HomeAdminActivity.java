@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.serviceku.MainActivity;
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.ActivityHomeAdminBinding;
-import com.example.serviceku.db.DBHolder;
-import com.example.serviceku.db.entity.ServiceEntity;
+import com.example.serviceku.room.DBHolder;
+import com.example.serviceku.room.entity.ServiceEntity;
 import com.example.serviceku.helper.SPManager;
+import com.example.serviceku.ui.aboutUs.AboutUsActivity;
 import com.example.serviceku.ui.admin.adapter.RecyclerAdapterServiceAdmin;
 import com.example.serviceku.util.LogoutUtil;
 
@@ -57,7 +58,7 @@ public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_admin, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -65,6 +66,9 @@ public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menuLogout){
             logout();
+            return true;
+        }else if(item.getItemId() == R.id.menuAboutUs){
+            startActivity(new Intent(this, AboutUsActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

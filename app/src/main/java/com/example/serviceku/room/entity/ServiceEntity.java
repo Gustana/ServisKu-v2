@@ -1,4 +1,4 @@
-package com.example.serviceku.db.entity;
+package com.example.serviceku.room.entity;
 
 
 import androidx.room.Entity;

@@ -8,8 +8,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.serviceku.databinding.ActivityInputServiceBinding;
-import com.example.serviceku.db.DBHolder;
-import com.example.serviceku.db.entity.ServiceEntity;
+import com.example.serviceku.room.DBHolder;
+import com.example.serviceku.room.entity.ServiceEntity;
 import com.example.serviceku.helper.SPManager;
 
 import java.text.SimpleDateFormat;

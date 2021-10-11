@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.ActivityLoginBinding;
-import com.example.serviceku.db.DBHolder;
-import com.example.serviceku.db.entity.UserEntity;
+import com.example.serviceku.room.DBHolder;
+import com.example.serviceku.room.entity.UserEntity;
 import com.example.serviceku.helper.SPManager;
 import com.example.serviceku.ui.admin.HomeAdminActivity;
 import com.example.serviceku.ui.user.HomeUserActivity;

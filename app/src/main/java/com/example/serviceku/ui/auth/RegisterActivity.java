@@ -8,8 +8,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.serviceku.databinding.ActivityRegisterBinding;
-import com.example.serviceku.db.DBHolder;
-import com.example.serviceku.db.entity.UserEntity;
+import com.example.serviceku.room.DBHolder;
+import com.example.serviceku.room.entity.UserEntity;
 import com.example.serviceku.util.RegisterUtil;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterUtil {

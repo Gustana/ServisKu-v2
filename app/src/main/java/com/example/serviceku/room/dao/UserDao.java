@@ -1,10 +1,10 @@
-package com.example.serviceku.db.dao;
+package com.example.serviceku.room.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.serviceku.db.entity.UserEntity;
+import com.example.serviceku.room.entity.UserEntity;
 
 import java.util.List;
 

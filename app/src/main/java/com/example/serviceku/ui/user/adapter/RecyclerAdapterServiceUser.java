@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.serviceku.BR;
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.RecyclerItemUserServiceBinding;
-import com.example.serviceku.db.entity.ServiceEntity;
+import com.example.serviceku.room.entity.ServiceEntity;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.serviceku.db;
+package com.example.serviceku.room;
 
 import android.content.Context;
 

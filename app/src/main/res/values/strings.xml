@@ -16,7 +16,8 @@
     <string name="no_hp">No Hp:</string>
     <string name="status">Status:</string>
     <string name="total_harga">Total Harga:</string>
-    <string name="logout">logout</string>
+    <string name="logout">Logout</string>
+    <string name="about_us">About Us</string>
     <string name="update">Update</string>
     <string name="selesai_service">Selesai</string>
     <string name="sedang_diservis">Sedang diservis</string>

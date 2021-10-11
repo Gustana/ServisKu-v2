@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.serviceku.BR;
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.RecyclerItemAdminServiceBinding;
-import com.example.serviceku.db.DBHolder;
-import com.example.serviceku.db.entity.ServiceEntity;
+import com.example.serviceku.room.DBHolder;
+import com.example.serviceku.room.entity.ServiceEntity;
 import com.example.serviceku.ui.admin.DetailServiceActivity;
 
 import java.util.List;
