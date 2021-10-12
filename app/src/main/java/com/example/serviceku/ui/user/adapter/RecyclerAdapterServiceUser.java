@@ -40,11 +40,22 @@ public class RecyclerAdapterServiceUser extends RecyclerView.Adapter<RecyclerAda
 
     @Override
     public void onBindViewHolder(@NonNull UI holder, int position) {
+        String status;
         ServiceEntity serviceEntity = serviceEntityList.get(position);
 
         holder.bind(serviceEntity);
 
         holder.binding.txtNoPlat.setText(serviceEntity.getNoPlat());
+
+        if (serviceEntity.getStatus() == 0) {
+            status = holder.binding.getRoot().getResources().getString(R.string.belum_diservis);
+        } else if (serviceEntity.getStatus() == 1) {
+            status = holder.binding.getRoot().getResources().getString(R.string.sedang_diservis);
+        } else {
+            status = holder.binding.getRoot().getResources().getString(R.string.selesai_service);
+        }
+
+        holder.binding.txtStatus.setText(status);
     }
 
     @Override

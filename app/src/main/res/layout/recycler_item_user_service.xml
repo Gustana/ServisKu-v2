@@ -163,7 +163,6 @@
                     android:layout_marginStart="16dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:text="@{String.valueOf(serviceUserData.status)}"
                     tools:text="selesai" />
 
             </LinearLayout>
