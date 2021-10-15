@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "832605627207",
+    "project_id": "serviceku-ebc37",
+    "storage_bucket": "serviceku-ebc37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832605627207:android:115d4725b90141b80ee262",
+        "android_client_info": {
+          "package_name": "com.example.serviceku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832605627207-c2nrb4p80s56058va07chu4h4np1v6dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFFk7Wv4AgQ2XVEq86ton84wxKQ5e3MEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832605627207-c2nrb4p80s56058va07chu4h4np1v6dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

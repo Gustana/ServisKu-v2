@@ -95,12 +95,9 @@ public class AboutUsActivity extends AppCompatActivity implements OnMapReadyCall
             locationComponent.setLocationComponentEnabled(true);
             locationComponent.setCameraMode(CameraMode.TRACKING);
             locationComponent.setRenderMode(RenderMode.NORMAL);
-
         } else {
-
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(this);
-
         }
     }
 
@@ -139,5 +136,4 @@ public class AboutUsActivity extends AppCompatActivity implements OnMapReadyCall
         super.onLowMemory();
         mapView.onLowMemory();
     }
-
 }
