@@ -2,10 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background_color"
-    >
+    android:background="@color/background_color">
 
     <data>
+
         <variable
             name="serviceAdminData"
             type="com.example.serviceku.room.entity.ServiceEntity" />
@@ -14,35 +14,35 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
         android:elevation="4dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="6dp">
 
         <ImageView
+            android:id="@+id/imgVehicle"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginTop="65dp">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/txtNoPlat"
                 android:layout_width="200dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
+                android:background="@color/primary"
                 android:gravity="center"
                 android:text="@{serviceAdminData.noPlat}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:background="@color/primary"
                 tools:text="DK 1 U" />
 
             <LinearLayout
@@ -130,8 +130,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="72dp"
-                    android:textColor="@color/black"
                     android:text="@{serviceAdminData.problems}"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="mesin rusak" />
 
@@ -153,8 +153,8 @@
                     android:id="@+id/txtPhoneNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{serviceAdminData.phoneNo}"
                     android:layout_marginStart="84dp"
+                    android:text="@{serviceAdminData.phoneNo}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="081xxxxx" />

@@ -1,12 +1,11 @@
 package com.example.serviceku.ui.auth;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.ActivityLoginBinding;
@@ -17,7 +16,7 @@ import com.example.serviceku.ui.admin.HomeAdminActivity;
 import com.example.serviceku.ui.user.HomeUserActivity;
 import com.example.serviceku.util.LoginUtil;
 
-public class LoginActivity extends AppCompatActivity implements LoginUtil {
+public class LoginActivity extends Activity implements LoginUtil {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
     private ActivityLoginBinding binding;
@@ -35,6 +34,8 @@ public class LoginActivity extends AppCompatActivity implements LoginUtil {
         dbHolder = new DBHolder(this);
 
         binding.btnLogin.setOnClickListener(v -> login());
+
+        binding.tvRegisterNow.setOnClickListener(v->startActivity(new Intent(this, RegisterActivity.class)));
 
     }
 

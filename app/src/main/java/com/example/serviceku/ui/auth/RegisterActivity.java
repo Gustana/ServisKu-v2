@@ -1,18 +1,17 @@
 package com.example.serviceku.ui.auth;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.serviceku.databinding.ActivityRegisterBinding;
 import com.example.serviceku.room.DBHolder;
 import com.example.serviceku.room.entity.UserEntity;
 import com.example.serviceku.util.RegisterUtil;
 
-public class RegisterActivity extends AppCompatActivity implements RegisterUtil {
+public class RegisterActivity extends Activity implements RegisterUtil {
 
     private ActivityRegisterBinding binding;
     private DBHolder dbHolder;

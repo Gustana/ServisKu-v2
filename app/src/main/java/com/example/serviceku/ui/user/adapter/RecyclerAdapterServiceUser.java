@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +47,12 @@ public class RecyclerAdapterServiceUser extends RecyclerView.Adapter<RecyclerAda
         holder.bind(serviceEntity);
 
         holder.binding.txtNoPlat.setText(serviceEntity.getNoPlat());
+
+        if(serviceEntity.getVehicleType().equalsIgnoreCase("Motor")){
+            holder.binding.imgVehicle.setImageDrawable(ResourcesCompat.getDrawable(holder.binding.getRoot().getResources(), R.drawable.motor, null));
+        }else{
+            holder.binding.imgVehicle.setImageDrawable(ResourcesCompat.getDrawable(holder.binding.getRoot().getResources(), R.drawable.mobil, null));
+        }
 
         if (serviceEntity.getStatus() == 0) {
             status = holder.binding.getRoot().getResources().getString(R.string.belum_diservis);

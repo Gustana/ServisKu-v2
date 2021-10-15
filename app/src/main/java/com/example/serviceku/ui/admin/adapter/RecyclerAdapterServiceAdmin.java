@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,6 +60,12 @@ public class RecyclerAdapterServiceAdmin extends RecyclerView.Adapter<RecyclerAd
             status = holder.binding.getRoot().getResources().getString(R.string.sedang_diservis);
         } else {
             status = holder.binding.getRoot().getResources().getString(R.string.selesai_service);
+        }
+
+        if(serviceEntity.getVehicleType().equalsIgnoreCase("Motor")){
+            holder.binding.imgVehicle.setImageDrawable(ResourcesCompat.getDrawable(holder.binding.getRoot().getResources(), R.drawable.motor, null));
+        }else{
+            holder.binding.imgVehicle.setImageDrawable(ResourcesCompat.getDrawable(holder.binding.getRoot().getResources(), R.drawable.mobil, null));
         }
 
         holder.binding.txtStatus.setText(status);

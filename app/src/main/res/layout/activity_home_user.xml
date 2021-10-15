@@ -9,15 +9,23 @@
         android:gravity="center_vertical"
         tools:context=".ui.user.HomeUserActivity">
 
+        <ImageView
+            android:id="@+id/imgNotFound"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/notfound"
+            android:visibility="gone" />
+
         <TextView
+            android:id="@+id/tvHai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvHai"
+            android:gravity="center"
             android:text="Data Servisku"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="30dp"
-            android:gravity="center" />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvUserServiceList"

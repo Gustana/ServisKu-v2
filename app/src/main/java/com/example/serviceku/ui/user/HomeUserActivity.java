@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -102,6 +103,12 @@ public class HomeUserActivity extends AppCompatActivity implements LogoutUtil {
 
                 Log.i(TAG, "onPostExecute: idUser: " + idUser);
                 Log.i(TAG, "onPostExecute: " + serviceEntities.toString());
+
+                if(serviceEntities.isEmpty()){
+                    binding.imgNotFound.setVisibility(View.VISIBLE);
+                }else{
+                    binding.imgNotFound.setVisibility(View.GONE);
+                }
 
                 binding.rvUserServiceList.setAdapter(new RecyclerAdapterServiceUser(serviceEntities));
             }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,6 +95,12 @@ public class HomeAdminActivity extends AppCompatActivity implements LogoutUtil {
             protected void onPostExecute(List<ServiceEntity> serviceEntities) {
                 super.onPostExecute(serviceEntities);
                 Log.i(TAG, "onPostExecute: " + serviceEntities.toString());
+
+                if(serviceEntities.isEmpty()){
+                    binding.imgNotFound.setVisibility(View.VISIBLE);
+                }else{
+                    binding.imgNotFound.setVisibility(View.GONE);
+                }
 
                 binding.rvAdminServiceList.setAdapter(new RecyclerAdapterServiceAdmin(serviceEntities, dbHolder));
             }
