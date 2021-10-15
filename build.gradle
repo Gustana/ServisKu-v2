@@ -9,7 +9,7 @@ buildscript {
                 basic(BasicAuthentication)
             }
             credentials {
-                username = "mapbox"
+                username = 'mapbox'
                 password = "sk.eyJ1IjoiZ2dnaW1hbmciLCJhIjoiY2t1ano5aDA5MzMwYzMxbW9sdG9mMm4wOSJ9.3jh2cbRD6dHpSFwOvcGzHg"
             }
         }
