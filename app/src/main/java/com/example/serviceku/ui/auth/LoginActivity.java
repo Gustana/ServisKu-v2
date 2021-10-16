@@ -37,6 +37,11 @@ public class LoginActivity extends Activity implements LoginUtil {
 
         binding.tvRegisterNow.setOnClickListener(v->startActivity(new Intent(this, RegisterActivity.class)));
 
+        binding.btncleartext.setOnClickListener(v->{
+            binding.edtUsername.setText("");
+            binding.edtPassword.setText("");
+        });
+
     }
 
     @Override
