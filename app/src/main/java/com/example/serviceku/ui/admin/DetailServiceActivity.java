@@ -41,19 +41,23 @@ public class DetailServiceActivity extends AppCompatActivity {
         getServiceDetail();
 
         binding.btnUpdateService.setOnClickListener(v -> {
-            if(binding.edtTotalPrice.getText().toString().isEmpty()){
-                Toast.makeText(this, "Total price kosong", Toast.LENGTH_SHORT).show();
-            }else {
-                float totalPrice = Float.parseFloat(binding.edtTotalPrice.getText().toString());
 
-                RadioButton rb = findViewById(binding.rgVehicleType.getCheckedRadioButtonId());
+            RadioButton rb = findViewById(binding.rgVehicleType.getCheckedRadioButtonId());
 
+            serviceData.setStatus(generateStatus(rb));
 
-                serviceData.setTotalPrice(totalPrice);
-                serviceData.setStatus(generateStatus(rb));
-
-                updateService(serviceData);
+            if(serviceData.getStatus()==2){
+                if(binding.edtTotalPrice.getText().toString().isEmpty()){
+                    Toast.makeText(this, "Total price kosong", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
+                    float totalPrice = Float.parseFloat(binding.edtTotalPrice.getText().toString());
+                    serviceData.setTotalPrice(totalPrice);
+                }
             }
+
+            updateService(serviceData);
+
         });
     }
 
