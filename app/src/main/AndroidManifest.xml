@@ -12,10 +12,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ServiceKu">
+        android:theme="@style/Theme.ServiceKu"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.admin.DetailInventoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.AddInventoryActivity"
+            android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +52,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
 
         <service
             android:name=".helper.MyApplication"

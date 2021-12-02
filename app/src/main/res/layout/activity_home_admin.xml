@@ -1,45 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background_color">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imgNotFound"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:src="@drawable/notfound"
-            android:visibility="gone" />
-
-        <RelativeLayout
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/menuContainer"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@id/navigationAdmin"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation_menu_admin" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/gambar1"
-                android:gravity="center"
-                android:scaleType="centerCrop"
-                android:text="Selamat Datang, Admin!"
-                android:textColor="@color/white"
-                android:id="@+id/txt"
-                android:textSize="20dp" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigationAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/admin_menu" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_below="@id/txt"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/rvAdminServiceList"
-                android:layout_width="380dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                tools:listitem="@layout/recycler_item_admin_service" />
-
-        </RelativeLayout>
-
-    </FrameLayout>
+    </RelativeLayout>
 </layout>

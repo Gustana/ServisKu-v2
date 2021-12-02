@@ -1,27 +1,33 @@
 package com.example.serviceku.ui.user;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.serviceku.databinding.ActivityInputServiceBinding;
-import com.example.serviceku.room.DBHolder;
-import com.example.serviceku.room.entity.ServiceEntity;
 import com.example.serviceku.helper.SPManager;
+import com.example.serviceku.remote.ApiClient;
+import com.example.serviceku.remote.ApiInstance;
+import com.example.serviceku.remote.model.service.InsertServiceResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InputServiceActivity extends AppCompatActivity {
 
+    private static final String TAG = InputServiceActivity.class.getSimpleName();
+
     private ActivityInputServiceBinding binding;
-    private DBHolder dbHolder;
     private SPManager spManager;
+
+    private ApiClient apiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,8 @@ public class InputServiceActivity extends AppCompatActivity {
         binding = ActivityInputServiceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        dbHolder = new DBHolder(this);
+        apiClient = ApiInstance.getRetrofitInstance().create(ApiClient.class);
+
         spManager = new SPManager(this);
 
         binding.btnSendService.setOnClickListener(v -> {
@@ -37,39 +44,29 @@ public class InputServiceActivity extends AppCompatActivity {
             RadioButton rb = findViewById(binding.rgVehicleType.getCheckedRadioButtonId());
 
             String noPlat = binding.edtNoPlat.getText().toString();
-            String noHP = binding.edtPhoneNo.getText().toString();
             String problem = binding.edtProblem.getText().toString();
             String vehicleType = rb.getText().toString();
 
-            class InsertService extends AsyncTask<Void, Void, Void> {
-
+            apiClient.insertService(
+                    noPlat,
+                    spManager.getIdUser(),
+                    problem,
+                    new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()),
+                    vehicleType
+            ).enqueue(new Callback<InsertServiceResponse>() {
                 @Override
-                protected Void doInBackground(Void... voids) {
-                    Date date = Calendar.getInstance().getTime();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
-
-                    ServiceEntity serviceEntity = new ServiceEntity(
-                            spManager.getIdUser(),
-                            noPlat,
-                            problem,
-                            dateFormat.format(date),
-                            noHP,
-                            0,
-                            vehicleType,
-                            0
-                    );
-                    dbHolder.getAppDB().serviceDao().insertService(serviceEntity);
-                    return null;
+                public void onResponse(Call<InsertServiceResponse> call, Response<InsertServiceResponse> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(InputServiceActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
-                protected void onPostExecute(Void unused) {
-                    super.onPostExecute(unused);
-                    Toast.makeText(getApplicationContext(), "Berhasil Kirim", Toast.LENGTH_SHORT).show();
+                public void onFailure(Call<InsertServiceResponse> call, Throwable t) {
+                    Log.e(TAG, "onFailure: ", t.getCause());
                 }
-            }
+            });
 
-            new InsertService().execute();
         });
     }
 }

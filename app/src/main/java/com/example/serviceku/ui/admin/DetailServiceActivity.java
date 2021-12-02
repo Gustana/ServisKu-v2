@@ -1,6 +1,5 @@
 package com.example.serviceku.ui.admin;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RadioButton;
@@ -11,19 +10,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.serviceku.BR;
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.ActivityDetailServiceBinding;
-import com.example.serviceku.room.DBHolder;
-import com.example.serviceku.room.entity.ServiceEntity;
+import com.example.serviceku.remote.ApiClient;
+import com.example.serviceku.remote.ApiInstance;
+import com.example.serviceku.remote.model.service.UpdateServiceResponse;
+import com.example.serviceku.remote.model.service.serviceDetail.GetServiceDetailItem;
+import com.example.serviceku.remote.model.service.serviceDetail.GetServiceDetailResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailServiceActivity extends AppCompatActivity {
 
     private static final String TAG = DetailServiceActivity.class.getSimpleName();
     private ActivityDetailServiceBinding binding;
-    private DBHolder dbHolder;
 
     private int serviceId;
 
-    private String username;
-    private ServiceEntity serviceData;
+    private ApiClient apiClient;
+
+    private int statusService;
+    private float totalPrice = 0F;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +38,9 @@ public class DetailServiceActivity extends AppCompatActivity {
         binding = ActivityDetailServiceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        serviceId = getIntent().getIntExtra("idService", 0);
-        username = getIntent().getStringExtra("username");
+        apiClient = ApiInstance.getRetrofitInstance().create(ApiClient.class);
 
-        dbHolder = DBHolder.getInstance(this);
+        serviceId = getIntent().getIntExtra("idService", 0);
 
         Log.i(TAG, "onCreate: serviceId: " + serviceId);
 
@@ -44,19 +50,18 @@ public class DetailServiceActivity extends AppCompatActivity {
 
             RadioButton rb = findViewById(binding.rgVehicleType.getCheckedRadioButtonId());
 
-            serviceData.setStatus(generateStatus(rb));
+            statusService = generateStatus(rb);
 
-            if(serviceData.getStatus()==2){
-                if(binding.edtTotalPrice.getText().toString().isEmpty()){
+            if (statusService == 2) {
+                if (binding.edtTotalPrice.getText().toString().isEmpty()) {
                     Toast.makeText(this, "Total price kosong", Toast.LENGTH_SHORT).show();
                     return;
-                }else {
-                    float totalPrice = Float.parseFloat(binding.edtTotalPrice.getText().toString());
-                    serviceData.setTotalPrice(totalPrice);
+                } else {
+                    totalPrice = Float.parseFloat(binding.edtTotalPrice.getText().toString());
                 }
             }
 
-            updateService(serviceData);
+            updateService();
 
         });
     }
@@ -65,48 +70,48 @@ public class DetailServiceActivity extends AppCompatActivity {
         return (rb.getText().toString().equals(getString(R.string.sedang_diservis))) ? 1 : 2;
     }
 
-    private void updateService(ServiceEntity serviceData) {
-        class UpdateService extends AsyncTask<Void, Void, Void> {
-
+    private void updateService() {
+        apiClient.updateService(serviceId, statusService, totalPrice).enqueue(new Callback<UpdateServiceResponse>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                dbHolder.getAppDB().serviceDao().updateService(serviceData);
-                return null;
+            public void onResponse(Call<UpdateServiceResponse> call, Response<UpdateServiceResponse> response) {
+
+                if (response.isSuccessful()) {
+
+                    if (response.body().getMessage() != null) {
+                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
             }
 
             @Override
-            protected void onPostExecute(Void unused) {
-                super.onPostExecute(unused);
-
-                Toast.makeText(getApplicationContext(), "Berhasil update", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<UpdateServiceResponse> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t.getCause());
             }
-        }
-
-        new UpdateService().execute();
+        });
     }
 
     private void getServiceDetail() {
-        class GetService extends AsyncTask<Void, Void, ServiceEntity> {
-
+        apiClient.getServiceDetail(serviceId).enqueue(new Callback<GetServiceDetailResponse>() {
             @Override
-            protected ServiceEntity doInBackground(Void... voids) {
-                return dbHolder.getAppDB().serviceDao().getServiceDetail(serviceId);
+            public void onResponse(Call<GetServiceDetailResponse> call, Response<GetServiceDetailResponse> response) {
+                Log.i(TAG, "onResponse: " + response.body().getMessage());
+
+                if (response.isSuccessful() && response.body().getCode() == 0) {
+                    Log.i(TAG, "onResponse: " + response.body().getData().toString());
+                    GetServiceDetailItem serviceItem = response.body().getData().get(0);
+
+                    binding.setVariable(BR.serviceDetailData, serviceItem);
+                    binding.executePendingBindings();
+                }
             }
 
             @Override
-            protected void onPostExecute(ServiceEntity serviceEntity) {
-                super.onPostExecute(serviceEntity);
-
-                binding.txtName.setText(username);
-                serviceData = serviceEntity;
-
-                binding.setVariable(BR.serviceDetailData, serviceEntity);
-                binding.executePendingBindings();
-
+            public void onFailure(Call<GetServiceDetailResponse> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t.getCause());
             }
-        }
-
-        new GetService().execute();
+        });
     }
 
 }

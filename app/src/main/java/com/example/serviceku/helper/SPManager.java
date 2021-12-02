@@ -3,15 +3,17 @@ package com.example.serviceku.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class SPManager {
-    public static final String ID_KEY = "idUser";
-    public static final String USERNAME_KEY = "username";
-    public static final String PASS_KEY = "pass";
-    public static final String LOGGED_IN_KEY = "loggedIn";
-    public static final String LEVEL_KEY = "level";
-    public static final String LEVEL_ADMIN = "admin";
-    public static final String LEVEL_USER = "user";
+import com.example.serviceku.remote.model.profile.profileDetail.GetProfileItem;
 
+public class SPManager {
+    public static final String ID_USER_KEY = "idUser";
+    public static final String EMAIL_KEY = "email";
+    public static final String PHONE_NO_KEY = "no_hp";
+    public static final String NAME_KEY = "nama";
+    public static final String LEVEL_KEY = "level";
+    public static final String GENDER_KEY = "gender";
+
+    public static final String LOGGED_IN_KEY = "loggedIn";
     private static final String SHARED_PREF = "sharedPref";
 
 
@@ -24,39 +26,49 @@ public class SPManager {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
     }
 
-    //for admin
-    public void setLogin(String username, String password, String level) {
+    public void setLogin(GetProfileItem profileItem) {
         editor = sharedPreferences.edit();
 
-        editor.putString(USERNAME_KEY, username);
-        editor.putString(PASS_KEY, password);
-        editor.putString(LEVEL_KEY, level);
+        editor.putString(EMAIL_KEY, profileItem.getEmail());
+        editor.putString(ID_USER_KEY, profileItem.getIdUser());
+        editor.putString(PHONE_NO_KEY, profileItem.getNoHp());
+        editor.putString(NAME_KEY, profileItem.getNama());
+        editor.putString(GENDER_KEY, profileItem.getJenisKelamin());
+        editor.putString(LEVEL_KEY, profileItem.getLevelUser());
+
         editor.putBoolean(LOGGED_IN_KEY, true);
 
         editor.commit();
     }
 
-    //for user
-    public void setLogin(int id, String username, String password, String level) {
-        editor = sharedPreferences.edit();
+    public String getLevelUser(){
+        return sharedPreferences.getString(LEVEL_KEY, null);
+    }
 
-        editor.putInt(ID_KEY, id);
-        editor.putString(USERNAME_KEY, username);
-        editor.putString(PASS_KEY, password);
-        editor.putString(LEVEL_KEY, level);
-        editor.putBoolean(LOGGED_IN_KEY, true);
+    public String getEmail(){
+        return sharedPreferences.getString(EMAIL_KEY, null);
+    }
 
-        editor.commit();
+    public String getPhoneNo(){
+        return sharedPreferences.getString(PHONE_NO_KEY, null);
+    }
+
+    public String getName(){
+        return sharedPreferences.getString(NAME_KEY, null);
+    }
+
+    public String getGender(){
+        return sharedPreferences.getString(GENDER_KEY, null);
     }
 
     public int getIdUser(){
-        return sharedPreferences.getInt(ID_KEY, 0);
+        return Integer.parseInt(sharedPreferences.getString(ID_USER_KEY, "0"));
     }
 
     public boolean isLevelAdmin(){
         String level = sharedPreferences.getString(LEVEL_KEY, null);
 
-        return level.equals(LEVEL_ADMIN);
+        return level.equals("0");
     }
 
     public boolean isLoggedIn(){

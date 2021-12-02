@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="serviceAdminData"
-            type="com.example.serviceku.room.entity.ServiceEntity" />
+            name="serviceData"
+            type="com.example.serviceku.remote.model.service.serviceList.GetServiceListItem" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -40,7 +40,7 @@
                 android:layout_gravity="center"
                 android:background="@color/primary"
                 android:gravity="center"
-                android:text="@{serviceAdminData.noPlat}"
+                android:text="@{serviceData.noPlat}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 tools:text="DK 1 U" />
@@ -62,32 +62,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="58dp"
-                    android:text="@{String.valueOf(serviceAdminData.idService)}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:text="@{serviceData.idService}"
                     tools:text="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nama"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="85dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    tools:text="Lalala" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{serviceAdminData.date}"
+                    android:text="@{serviceData.tanggal}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="27 Oktober 2021" />
@@ -130,34 +108,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="72dp"
-                    android:text="@{serviceAdminData.problems}"
+                    android:text="@{serviceData.keluhan}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="mesin rusak" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/no_hp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtPhoneNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="84dp"
-                    android:text="@{serviceAdminData.phoneNo}"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    tools:text="081xxxxx" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,6 +134,7 @@
                     android:layout_marginStart="83dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:text="@{serviceData.statusService}"
                     tools:text="selesai" />
 
             </LinearLayout>
@@ -200,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="46dp"
-                    android:text="@{String.valueOf(serviceAdminData.totalPrice)}"
+                    android:text="@{serviceData.totalHarga}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="60.000" />

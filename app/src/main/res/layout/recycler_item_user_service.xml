@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="serviceUserData"
-            type="com.example.serviceku.room.entity.ServiceEntity" />
+            name="serviceData"
+            type="com.example.serviceku.remote.model.service.userServiceList.GetUserServiceListItem" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -41,7 +41,7 @@
                 android:layout_gravity="center"
                 android:background="@color/primary"
                 android:gravity="center"
-                android:text="@{serviceUserData.noPlat}"
+                android:text="@{serviceData.noPlat}"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 tools:text="DK 1 U" />
@@ -62,8 +62,8 @@
                     android:id="@+id/txtIdService"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="73dp"
-                    android:text="@{String.valueOf(serviceUserData.idService)}"
+                    android:layout_marginStart="58dp"
+                    android:text="@{serviceData.idService}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="1" />
@@ -85,12 +85,11 @@
                     android:id="@+id/txtServiceDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:text="@{serviceUserData.date}"
+                    android:layout_marginStart="16dp"
+                    android:text="@{serviceData.tanggal}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="27 Oktober 2021" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -109,8 +108,8 @@
                     android:id="@+id/txtProblem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="86dp"
-                    android:text="@{serviceUserData.problems}"
+                    android:layout_marginStart="72dp"
+                    android:text="@{serviceData.keluhan}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="mesin rusak" />
@@ -125,31 +124,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_hp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtPhoneNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="100dp"
-                    android:text="@{serviceUserData.phoneNo}"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    tools:text="081xxxxx" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status Servis:"
+                    android:text="@string/status"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -157,7 +132,8 @@
                     android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
+                    android:layout_marginStart="83dp"
+                    android:text="@{serviceData.statusService}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="selesai" />
@@ -172,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Harga Servis:"
+                    android:text="@string/total_harga"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -180,13 +156,191 @@
                     android:id="@+id/txtTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@{String.valueOf(serviceUserData.totalPrice)}"
+                    android:layout_marginStart="46dp"
+                    android:text="@{serviceData.totalHarga}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:text="60.000" />
-
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <!--    <com.google.android.material.card.MaterialCardView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:elevation="4dp"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="6dp">-->
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/imgVehicle"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="100dp"-->
+    <!--            android:scaleType="centerCrop"-->
+    <!--            android:src="@drawable/mobil" />-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="65dp"-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:padding="16dp">-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txtNoPlat"-->
+    <!--                android:layout_width="200dp"-->
+    <!--                android:layout_height="35dp"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:background="@color/primary"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="@{serviceUserData.noPlat}"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="18sp"-->
+    <!--                tools:text="DK 1 U" />-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="25dp">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="@string/id_service"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtIdService"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginStart="73dp"-->
+    <!--                    android:text="@{String.valueOf(serviceUserData.idService)}"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    tools:text="1" />-->
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="8dp">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="@string/tanggal_service"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtServiceDate"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginStart="30dp"-->
+    <!--                    android:text="@{serviceUserData.date}"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    tools:text="27 Oktober 2021" />-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="8dp">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="@string/keluhan"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtProblem"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginStart="86dp"-->
+    <!--                    android:text="@{serviceUserData.problems}"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    tools:text="mesin rusak" />-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="8dp">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="@string/no_hp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtPhoneNo"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginStart="100dp"-->
+    <!--                    android:text="@{serviceUserData.phoneNo}"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    tools:text="081xxxxx" />-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="8dp">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="Status Servis:"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtStatus"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginStart="52dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    tools:text="selesai" />-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="8dp">-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="Total Harga Servis:"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/txtTotalPrice"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginStart="16dp"-->
+    <!--                    android:text="@{String.valueOf(serviceUserData.totalPrice)}"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    tools:text="60.000" />-->
+
+    <!--            </LinearLayout>-->
+    <!--        </LinearLayout>-->
+    <!--    </com.google.android.material.card.MaterialCardView>-->
 </layout>

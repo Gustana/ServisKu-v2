@@ -47,16 +47,6 @@
                     android:paddingLeft="16dp" />
 
                 <EditText
-                    android:id="@+id/edtPhoneNo"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/grayyy"
-                    android:hint="No HP"
-                    android:inputType="number"
-                    android:paddingLeft="16dp" />
-
-                <EditText
                     android:id="@+id/edt_problem"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"

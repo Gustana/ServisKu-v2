@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="inventoryDetailData"
+            type="com.example.serviceku.remote.model.inventory.inventoryDetail.GetInventoryDetailItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.admin.DetailInventoryActivity">
+
+        <EditText
+            android:id="@+id/edtInventoryDetailName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{inventoryDetailData.namaBarang}" />
+
+        <EditText
+            android:id="@+id/edtInventoryDetailAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{inventoryDetailData.jumlah}" />
+
+        <EditText
+            android:id="@+id/edtInventoryDetailType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{inventoryDetailData.jenisSparepart}" />
+
+        <EditText
+            android:id="@+id/edtInventoryDetailPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{inventoryDetailData.harga}" />
+
+        <Button
+            android:id="@+id/btnUpdateInventory"
+            android:layout_width="match_parent"
+            android:text="Update Inventory"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</layout>

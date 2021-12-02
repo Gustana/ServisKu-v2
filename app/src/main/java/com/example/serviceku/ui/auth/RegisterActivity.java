@@ -1,20 +1,26 @@
 package com.example.serviceku.ui.auth;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.example.serviceku.databinding.ActivityRegisterBinding;
-import com.example.serviceku.room.DBHolder;
-import com.example.serviceku.room.entity.UserEntity;
+import com.example.serviceku.remote.ApiClient;
+import com.example.serviceku.remote.ApiInstance;
+import com.example.serviceku.remote.model.auth.register.RegisterResponse;
 import com.example.serviceku.util.RegisterUtil;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends Activity implements RegisterUtil {
 
+    private static final String TAG = RegisterActivity.class.getSimpleName();
+
     private ActivityRegisterBinding binding;
-    private DBHolder dbHolder;
+
+    private ApiClient apiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,39 +28,36 @@ public class RegisterActivity extends Activity implements RegisterUtil {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        dbHolder = new DBHolder(this);
+        apiClient = ApiInstance.getRetrofitInstance().create(ApiClient.class);
 
         binding.btnLogin.setOnClickListener(v -> register());
     }
 
     @Override
     public void register() {
-        String username = binding.edtUsername.getText().toString();
+        String email = binding.edtEmail.getText().toString();
         String password = binding.edtPassword.getText().toString();
+        String phoneNo = "";
+        String name = "";
+        String gender = "";
 
-        class InsertUser extends AsyncTask<Void, Void, Void> {
+        Call<RegisterResponse> registerCall = apiClient.register(email, password, phoneNo, name, gender);
 
+        registerCall.enqueue(new Callback<RegisterResponse>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                UserEntity userEntity = new UserEntity();
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                Log.i(TAG, "onResponse: " + response.body());
 
-                userEntity.setUsername(username);
-                userEntity.setPassword(password);
+                if(response.isSuccessful() && response.code()==0){
 
-                dbHolder.getAppDB().userDao().insertUser(userEntity);
-
-                return null;
+                }
             }
 
             @Override
-            protected void onPostExecute(Void unused) {
-                super.onPostExecute(unused);
-                Toast.makeText(getApplicationContext(), "Berhasil register", Toast.LENGTH_SHORT).show();
-
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getMessage());
             }
-        }
+        });
 
-        new InsertUser().execute();
     }
 }

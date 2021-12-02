@@ -1,8 +1,10 @@
 package com.example.serviceku.ui.user.adapter;
 
+import android.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
@@ -12,18 +14,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.serviceku.BR;
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.RecyclerItemUserServiceBinding;
-import com.example.serviceku.room.entity.ServiceEntity;
+import com.example.serviceku.remote.ApiClient;
+import com.example.serviceku.remote.ApiInstance;
+import com.example.serviceku.remote.model.service.DeleteServiceResponse;
+import com.example.serviceku.remote.model.service.userServiceList.GetUserServiceListItem;
+import com.example.serviceku.ui.user.fragment.UserServiceFragment;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecyclerAdapterServiceUser extends RecyclerView.Adapter<RecyclerAdapterServiceUser.UI> {
 
     private static final String TAG = RecyclerAdapterServiceUser.class.getSimpleName();
-    private final List<ServiceEntity> serviceEntityList;
+    private final List<GetUserServiceListItem> serviceList;
 
-    public RecyclerAdapterServiceUser(List<ServiceEntity> serviceEntityList) {
-        this.serviceEntityList = serviceEntityList;
-        Log.i(TAG, "RecyclerAdapterServiceUser: " + serviceEntityList);
+    private ApiClient apiClient;
+
+    public RecyclerAdapterServiceUser(List<GetUserServiceListItem> serviceList) {
+        this.serviceList = serviceList;
         notifyDataSetChanged();
     }
 
@@ -36,38 +47,66 @@ public class RecyclerAdapterServiceUser extends RecyclerView.Adapter<RecyclerAda
                 parent,
                 false
         );
+
+        apiClient = ApiInstance.getRetrofitInstance().create(ApiClient.class);
+
         return new UI(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UI holder, int position) {
         String status;
-        ServiceEntity serviceEntity = serviceEntityList.get(position);
+        GetUserServiceListItem serviceData = serviceList.get(position);
 
-        holder.bind(serviceEntity);
+        holder.bind(serviceData);
 
-        holder.binding.txtNoPlat.setText(serviceEntity.getNoPlat());
-
-        if(serviceEntity.getVehicleType().equalsIgnoreCase("Motor")){
+        if (serviceData.getJenisKendaraan().equalsIgnoreCase("Motor")) {
             holder.binding.imgVehicle.setImageDrawable(ResourcesCompat.getDrawable(holder.binding.getRoot().getResources(), R.drawable.motor, null));
-        }else{
+        } else {
             holder.binding.imgVehicle.setImageDrawable(ResourcesCompat.getDrawable(holder.binding.getRoot().getResources(), R.drawable.mobil, null));
         }
 
-        if (serviceEntity.getStatus() == 0) {
+        if (Integer.parseInt(serviceData.getStatusService()) == 0) {
             status = holder.binding.getRoot().getResources().getString(R.string.belum_diservis);
-        } else if (serviceEntity.getStatus() == 1) {
+        } else if (Integer.parseInt(serviceData.getStatusService()) == 1) {
             status = holder.binding.getRoot().getResources().getString(R.string.sedang_diservis);
         } else {
             status = holder.binding.getRoot().getResources().getString(R.string.selesai_service);
         }
 
         holder.binding.txtStatus.setText(status);
+
+        holder.itemView.setOnLongClickListener(view -> {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(holder.itemView.getContext());
+            alertDialog.setMessage("Yakin Hapus?");
+            alertDialog.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                apiClient.deleteService(Integer.parseInt(serviceData.getIdService())).enqueue(new Callback<DeleteServiceResponse>() {
+                    @Override
+                    public void onResponse(Call<DeleteServiceResponse> call, Response<DeleteServiceResponse> response) {
+                        Log.i(TAG, "onResponse: delete: " + response.body().getCode());
+                        if (response.isSuccessful()){
+                            Toast.makeText(holder.itemView.getContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DeleteServiceResponse> call, Throwable t) {
+                        Log.e(TAG, "onFailure: ", t.getCause());
+                    }
+                });
+            });
+            alertDialog.setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> {
+                dialogInterface.dismiss();
+            });
+
+            alertDialog.show();
+            return true;
+        });
     }
 
     @Override
     public int getItemCount() {
-        return serviceEntityList.size();
+        return serviceList.size();
     }
 
     static class UI extends RecyclerView.ViewHolder {
@@ -79,7 +118,7 @@ public class RecyclerAdapterServiceUser extends RecyclerView.Adapter<RecyclerAda
         }
 
         void bind(Object obj) {
-            binding.setVariable(BR.serviceUserData, obj);
+            binding.setVariable(BR.serviceData, obj);
             binding.executePendingBindings();
         }
 
