@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ServiceKu-v2</string>
+    <string name="app_name">ServiceKu</string>
     <string name="app_jargon">"Kamu Senang Kami senang"</string>
     <string name="login">Login</string>
     <string name="register">Register</string>

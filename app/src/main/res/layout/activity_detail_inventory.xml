@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color">
 
     <data>
 
@@ -15,35 +17,108 @@
         android:orientation="vertical"
         tools:context=".ui.admin.DetailInventoryActivity">
 
-        <EditText
-            android:id="@+id/edtInventoryDetailName"
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:text="@{inventoryDetailData.namaBarang}" />
+            android:layout_marginTop="70dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp"
+            android:layout_gravity="center"
+            >
 
-        <EditText
-            android:id="@+id/edtInventoryDetailAmount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{inventoryDetailData.jumlah}" />
+            <TextView
+                android:id="@+id/tvInventory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Data Inventory"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="220dp"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                >
 
-        <EditText
-            android:id="@+id/edtInventoryDetailType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{inventoryDetailData.jenisSparepart}" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_gambar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
 
-        <EditText
-            android:id="@+id/edtInventoryDetailPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{inventoryDetailData.harga}" />
+                    android:elevation="10dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvInventory">
 
-        <Button
-            android:id="@+id/btnUpdateInventory"
-            android:layout_width="match_parent"
-            android:text="Update Inventory"
-            android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/iv_gambar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_baseline_broken_image_24" />
+
+                </androidx.cardview.widget.CardView>
+
+                <EditText
+                    android:id="@+id/edtInventoryDetailName"
+                    android:hint="Nama Barang"
+                    android:paddingLeft="16dp"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@color/grayyy"
+                    android:layout_marginTop="16dp"
+                    android:text="@{inventoryDetailData.namaBarang}"
+                    />
+
+                <EditText
+                    android:id="@+id/edtInventoryDetailAmount"
+                    android:hint="Jumlah"
+                    android:paddingLeft="16dp"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@color/grayyy"
+                    android:layout_marginTop="16dp"
+                    android:text="@{inventoryDetailData.jumlah}"
+                    />
+
+                <EditText
+                    android:id="@+id/edtInventoryDetailType"
+                    android:hint="Jenis Sparepart"
+                    android:paddingLeft="16dp"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@color/grayyy"
+                    android:layout_marginTop="16dp"
+                    android:text="@{inventoryDetailData.jenisSparepart}"
+                    />
+
+                <EditText
+                    android:id="@+id/edtInventoryDetailPrice"
+                    android:hint="Harga"
+                    android:paddingLeft="16dp"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@color/grayyy"
+                    android:layout_marginTop="16dp"
+                    android:text="@{inventoryDetailData.harga}"
+                    />
+                <Button
+                    android:id="@+id/btnUpdateInventory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Update Inventory"
+                    />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
