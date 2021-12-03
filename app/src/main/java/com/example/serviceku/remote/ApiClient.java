@@ -81,7 +81,8 @@ public interface ApiClient {
             @Field("nama_barang") String inventoryName,
             @Field("jumlah") int inventoryAmount,
             @Field("jenis_sparepart") String sparepartType,
-            @Field("harga") float price
+            @Field("harga") float price,
+            @Field("image") String image
     );
 
     @FormUrlEncoded

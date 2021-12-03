@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.serviceku.BR;
 import com.example.serviceku.databinding.ActivityDetailInventoryBinding;
 import com.example.serviceku.remote.ApiClient;
@@ -43,6 +44,10 @@ public class DetailInventoryActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     binding.setVariable(BR.inventoryDetailData, response.body().getData().get(0));
                     binding.executePendingBindings();
+
+                    if(response.body().getData().get(0).getGambar()!=null) {
+                        Glide.with(DetailInventoryActivity.this).load(response.body().getData().get(0).getGambar()).into(binding.ivGambar);
+                    }
                 }
             }
 

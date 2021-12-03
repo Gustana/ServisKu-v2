@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.serviceku.BR;
 import com.example.serviceku.R;
 import com.example.serviceku.databinding.RecyclerItemInventoryBinding;
@@ -58,6 +59,10 @@ public class RecyclerAdapterInventory extends RecyclerView.Adapter<RecyclerAdapt
         GetInventoryListItem inventoryData = inventoryList.get(position);
 
         holder.bind(inventoryData);
+
+        if(inventoryData.getGambar()!=null) {
+            Glide.with(holder.itemView.getContext()).load(inventoryData.getGambar()).into(holder.binding.imgInventory);
+        }
 
         holder.itemView.setOnClickListener(v -> {
             Intent i = new Intent(holder.itemView.getContext(), DetailInventoryActivity.class);

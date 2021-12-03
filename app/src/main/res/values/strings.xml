@@ -30,4 +30,6 @@
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_activity_main23">MainActivity23</string>
     <string name="menu_profile">Profile</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 </resources>

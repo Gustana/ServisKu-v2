@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,7 +48,7 @@ public class ProfileFragment extends Fragment {
         binding.btnUpdateProfile.setOnClickListener(v -> {
             String password = binding.edtPass.getText().toString();
             String name = binding.edtName.getText().toString();
-            String gender = binding.edtGender.getText().toString();
+            String gender = getSelectedGender();
             String phoneNo = binding.edtPhoneNo.getText().toString();
 
             apiClient.updateProfile(
@@ -62,7 +63,7 @@ public class ProfileFragment extends Fragment {
 
                     Log.i(TAG, "onResponse: updateProfile: " + response.body().getCode());
 
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         Toast.makeText(getContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                         GetProfileItem getProfileItem = new GetProfileItem(
@@ -73,6 +74,8 @@ public class ProfileFragment extends Fragment {
                                 gender,
                                 spManager.getEmail()
                         );
+
+                        Log.i(TAG, "onResponse: " + gender);
 
                         spManager.setLogin(getProfileItem);
                     }
@@ -90,9 +93,29 @@ public class ProfileFragment extends Fragment {
 
     private void setProfile() {
         binding.edtEmail.setText(spManager.getEmail());
-        binding.edtGender.setText(spManager.getGender());
         binding.edtPhoneNo.setText(spManager.getPhoneNo());
         binding.edtName.setText(spManager.getName());
+        setGender();
+    }
+
+    private void setGender() {
+        if(spManager.getGender().equalsIgnoreCase("Perempuan")){
+            binding.rbPerempuan.setChecked(true);
+        }else{
+            binding.rbLakilaki.setChecked(true);
+        }
+    }
+
+    private String getSelectedGender() {
+        String selectedGender;
+
+        RadioButton rb = requireView().findViewById(binding.rgJenisKelamin.getCheckedRadioButtonId());
+
+        selectedGender = rb.getText().toString();
+
+        Log.i(TAG, "getSelectedGender: " + selectedGender);
+
+        return selectedGender;
     }
 
     @Override
