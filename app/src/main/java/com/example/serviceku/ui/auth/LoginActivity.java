@@ -87,7 +87,7 @@ public class LoginActivity extends Activity implements LoginUtil {
 
                 if (response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    if (response.code() != -1) {
+                    if (Integer.parseInt(response.body().getCode()) != -1) {
 
                         try {
                             userId = Integer.parseInt(response.body().getCode());
