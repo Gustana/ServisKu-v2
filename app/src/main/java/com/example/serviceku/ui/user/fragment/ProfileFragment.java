@@ -46,14 +46,12 @@ public class ProfileFragment extends Fragment {
         setProfile();
 
         binding.btnUpdateProfile.setOnClickListener(v -> {
-            String password = binding.edtPass.getText().toString();
             String name = binding.edtName.getText().toString();
             String gender = getSelectedGender();
             String phoneNo = binding.edtPhoneNo.getText().toString();
 
             apiClient.updateProfile(
                     spManager.getIdUser(),
-                    password,
                     phoneNo,
                     name,
                     gender

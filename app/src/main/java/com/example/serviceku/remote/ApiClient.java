@@ -114,7 +114,6 @@ public interface ApiClient {
     @POST("profile/updateProfile.php")
     Call<UpdateProfileResponse> updateProfile(
             @Field("id_user") int idUser,
-            @Field("pass") String pass,
             @Field("no_hp") String phoneNo,
             @Field("nama") String name,
             @Field("jenis_kelamin") String gender

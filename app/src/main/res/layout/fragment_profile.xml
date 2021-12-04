@@ -113,6 +113,7 @@
                         android:layout_width="300dp"
                         android:layout_height="50dp"
                         android:text="123"
+                        android:enabled="false"
                         android:layout_marginTop="16dp"
                         android:background="@color/grayyy"
                         android:hint="Password"
