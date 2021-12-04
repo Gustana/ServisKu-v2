@@ -3,6 +3,8 @@ package com.example.serviceku.ui.auth;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.serviceku.databinding.ActivityRegisterBinding;
 import com.example.serviceku.remote.ApiClient;
@@ -22,6 +24,7 @@ public class RegisterActivity extends Activity implements RegisterUtil {
 
     private ApiClient apiClient;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +36,25 @@ public class RegisterActivity extends Activity implements RegisterUtil {
         binding.btnLogin.setOnClickListener(v -> register());
     }
 
+    private String getSelectedGender() {
+        String selectedGender;
+
+        RadioButton rb = findViewById(binding.rgJenisKelamin.getCheckedRadioButtonId());
+
+        selectedGender = rb.getText().toString();
+
+        Log.i(TAG, "getSelectedGender: " + selectedGender);
+
+        return selectedGender;
+    }
+
     @Override
     public void register() {
         String email = binding.edtEmail.getText().toString();
         String password = binding.edtPassword.getText().toString();
-        String phoneNo = "";
-        String name = "";
-        String gender = "";
+        String phoneNo = binding.edtNo.getText().toString();
+        String name = binding.edtNama.getText().toString();
+        String gender = getSelectedGender();
 
         Call<RegisterResponse> registerCall = apiClient.register(email, password, phoneNo, name, gender);
 
@@ -48,14 +63,17 @@ public class RegisterActivity extends Activity implements RegisterUtil {
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 Log.i(TAG, "onResponse: " + response.body());
 
-                if(response.isSuccessful() && response.code()==0){
-
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Opps.. unexpected error", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage());
+                Log.e(TAG, "onFailure: ", t.getCause());
+                Log.i(TAG, "onFailure: " + t.getMessage());
             }
         });
 
