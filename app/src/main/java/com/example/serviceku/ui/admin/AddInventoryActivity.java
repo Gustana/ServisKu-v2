@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,8 @@ public class AddInventoryActivity extends AppCompatActivity {
 
     private Bitmap bitmap = null;
 
+    private String vehicleType = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,7 @@ public class AddInventoryActivity extends AppCompatActivity {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+
             });
 
             alertDialog.show();
@@ -74,21 +78,30 @@ public class AddInventoryActivity extends AppCompatActivity {
 
         binding.btnAddInventory.setOnClickListener(v -> {
             String inventoryName = binding.edtInventoryName.getText().toString();
-            int inventoryAmount = Integer.parseInt(binding.edtInventoryAmount.getText().toString());
-            String sparepartType = binding.edtInventoryType.getText().toString();
-            float inventoryPrice = Float.parseFloat(binding.edtInventoryPrice.getText().toString());
+            String inventoryAmount =binding.edtInventoryAmount.getText().toString();
+            RadioButton sparepartType = findViewById(binding.rgVehicleType.getCheckedRadioButtonId());
+            String inventoryPrice = binding.edtInventoryPrice.getText().toString();
+
+            if(sparepartType!=null){
+                vehicleType = sparepartType.getText().toString();
+            }
 
             String selectedImage = "";
 
             if (bitmap != null) {
                 selectedImage = getEncodedImage(bitmap);
             }
+            if (inventoryName.equals("") || inventoryAmount.isEmpty() || inventoryPrice.isEmpty() || vehicleType.equals("")) {
+                Toast.makeText(this, "Input Kosong", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else{
 
             apiClient.insertInventory(
                     inventoryName,
-                    inventoryAmount,
-                    sparepartType,
-                    inventoryPrice,
+                    Integer.parseInt(inventoryAmount),
+                    vehicleType,
+                    Float.parseFloat(inventoryPrice),
                     selectedImage
             ).enqueue(new Callback<InsertInventoryResponse>() {
                 @Override
@@ -104,6 +117,7 @@ public class AddInventoryActivity extends AppCompatActivity {
                     Log.e(TAG, "onFailure: " + t.getMessage());
                 }
             });
+            }
         });
     }
 

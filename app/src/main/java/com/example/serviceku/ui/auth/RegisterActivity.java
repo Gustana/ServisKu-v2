@@ -25,6 +25,7 @@ public class RegisterActivity extends Activity implements RegisterUtil {
     private ApiClient apiClient;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +38,13 @@ public class RegisterActivity extends Activity implements RegisterUtil {
     }
 
     private String getSelectedGender() {
-        String selectedGender;
+        String selectedGender="";
 
         RadioButton rb = findViewById(binding.rgJenisKelamin.getCheckedRadioButtonId());
 
-        selectedGender = rb.getText().toString();
+        if(rb != null){
+            selectedGender = rb.getText().toString();
+        }
 
         Log.i(TAG, "getSelectedGender: " + selectedGender);
 
@@ -55,6 +58,12 @@ public class RegisterActivity extends Activity implements RegisterUtil {
         String phoneNo = binding.edtNo.getText().toString();
         String name = binding.edtNama.getText().toString();
         String gender = getSelectedGender();
+
+        if (email.equals("") || password.equals("") || phoneNo.equals("") || name.equals("") || gender.equals("")) {
+            Toast.makeText(this, "Input Kosong", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         Call<RegisterResponse> registerCall = apiClient.register(email, password, phoneNo, name, gender);
 
