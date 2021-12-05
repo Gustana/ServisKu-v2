@@ -56,7 +56,7 @@ public class InputServiceActivity extends AppCompatActivity {
 
             ServiceInputChecker inputChecker = new ServiceInputChecker(noPlat, problem, vehicleType);
 
-            if (inputChecker.getNoPlat().isEmpty() || inputChecker.getVehicleType().isEmpty() && inputChecker.getProblem().isEmpty()) {
+            if (inputChecker.getNoPlat().isEmpty() || inputChecker.getVehicleType().isEmpty() || inputChecker.getProblem().isEmpty()) {
                 Toast.makeText(InputServiceActivity.this, inputChecker.getEmptyMessage(), Toast.LENGTH_SHORT).show();
             } else {
 
