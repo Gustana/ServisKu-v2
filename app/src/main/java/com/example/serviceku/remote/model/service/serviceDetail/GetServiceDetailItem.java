@@ -28,6 +28,12 @@ public class GetServiceDetailItem {
 	@SerializedName("id_service")
 	private String idService;
 
+	@SerializedName("no_hp")
+	private String noHp;
+
+	@SerializedName("nama")
+	private String nama;
+
 	public String getTotalHarga(){
 		return totalHarga;
 	}
@@ -58,6 +64,14 @@ public class GetServiceDetailItem {
 
 	public String getIdService(){
 		return idService;
+	}
+
+	public String getNoHp() {
+		return noHp;
+	}
+
+	public String getNama() {
+		return nama;
 	}
 
 	@Override

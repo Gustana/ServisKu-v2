@@ -2,10 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background_color"
-    >
+    android:background="@color/background_color">
 
     <data>
+
         <variable
             name="serviceDetailData"
             type="com.example.serviceku.remote.model.service.serviceDetail.GetServiceDetailItem" />
@@ -14,17 +14,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
             android:background="@drawable/gambar1"
+            android:gravity="center"
+            android:scaleType="centerCrop"
             android:text="Selamat Datang, Admin!"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            android:gravity="center" />
+            android:textSize="20dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -32,24 +32,24 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:elevation="6dp"
-            app:cardElevation="6dp"
-            app:cardCornerRadius="6dp">
+            app:cardCornerRadius="6dp"
+            app:cardElevation="6dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_marginTop="20dp">
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Update Data Servis"
-                    android:textSize="24dp"
-                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:text="Update Data Servis"
+                    android:textColor="@color/black"
+                    android:textSize="24dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,6 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="42dp"
+                        android:text="@{serviceDetailData.nama}"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         tools:text="Lalala" />
@@ -112,6 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="42dp"
+                        android:text="@{serviceDetailData.noHp}"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         tools:text="081" />
@@ -176,8 +178,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -190,8 +192,8 @@
                         android:id="@+id/edtTotalPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:inputType="number"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
                 </LinearLayout>
 
