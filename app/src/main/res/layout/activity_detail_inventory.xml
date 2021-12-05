@@ -89,16 +89,38 @@
                     android:text="@{inventoryDetailData.jumlah}"
                     />
 
-                <EditText
-                    android:id="@+id/edtInventoryDetailType"
-                    android:hint="Jenis Sparepart"
-                    android:paddingLeft="16dp"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:background="@color/grayyy"
-                    android:layout_marginTop="16dp"
-                    android:text="@{inventoryDetailData.jenisSparepart}"
-                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="13dp"
+                        android:text="Jenis Kendaraan"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rgVehicleType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbMotorcycle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Motor" />
+
+                        <RadioButton
+                            android:id="@+id/rbCar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:text="Mobil" />
+                    </RadioGroup>
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/edtInventoryDetailPrice"
